@@ -33,3 +33,21 @@ async function clearScript() {
     scriptButton.innerText = "Get Bee Movie Script"
 }
 
+async function getResponse() {
+    const responseContainer = document.getElementById("responseContainer");
+
+    const fetchedJSON = await fetch("/form-handler");
+    const list = await fetchedJSON.json();
+
+    let string = "";
+
+    for (i = 0; i < list.length; i++) {
+        if (string.length == 0) {
+            string = string.concat(list[i]);
+        } else {
+            string = string.concat(", ", list[i]);
+        }
+    }
+
+    responseContainer.innerText = string;
+}
