@@ -16,13 +16,12 @@
 
         <p>Hi!</p>
         <p>I'm a Computer Science student at the University of British Columbia doing second degree program. I have a
-            background in Biochemistry. Cybersecurity is a area that particularly interests me and I hope learn more
-            about it. I'm currently exploring uses of Computer Science in Chemistry.</p>
+            background in Biochemistry and I'm currently exploring the field of Cheminformatics. Cybersecurity is an area that particularly interests me and I hope learn more
+            about it.</p>
         <p>In my free time I'm into powerlifting and playing the guitar poorly.</p>
 
         <br>
 
-        <br>
         <h2>Projects</h3>
 
             <h3>Conformer Counter</h3>
@@ -67,19 +66,23 @@
             <iframe name="frame"></iframe>
 
             <form id="textForm" action="/text-form-handler" method="POST" target="frame">
-                <p>Input some comma separated integers for me to sort:</p>
+                <p>Input some comma separated integers for the server to sort:</p>
                 <textarea name="text-input">3, 2, 4, 1, 5</textarea>
                 <br>
-                <button id="textFormButton">submit</button>
+                <button id="textFormButton">Submit</button>
             </form>
             <br>
 
             <div id="responseContainer"></div>
 
             <form action="/upload" method="POST" enctype="multipart/form-data">
-                <p>Upload a .log file:</p>
+                <p>Upload an image:</p>
                 <input type="file" name="image">
-            </form>
+                <br><br>
+                <button>Upload</button>
+              </form>
+          
+              <p><a href="/list-images">Click here to see all of the uploaded images!</a></p>
 
             <br><br><br><br>
     </div>
