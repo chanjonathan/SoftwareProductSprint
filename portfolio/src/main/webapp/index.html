@@ -1,77 +1,91 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <title>Jonathan Chan</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
-  </head>
-  <body>
+</head>
+
+<body>
     <div id="content">
-      <h1>Jonathan Chan</h1>
-      <a href = "https://github.com/chanjonathan">GitHub</a> | 
-      <a href = "https://www.linkedin.com/in/chan-jon/">LinkedIn</a>
-      
-      <p>Hi!</p>
-      <p>I'm a Computer Science student at the University of British Columbia doing second degree program. I have a background in Biochemistry and Chemistry. Cybersecurity is a area that particularly interests me and I hope learn more about it. I'm currently exploring uses of Computer Science in Chemistry.</p>
-      <p>In my free time I'm into powerlifting and playing the guitar poorly.</p>
+        <h1>Jonathan Chan</h1>
+        <a href="https://github.com/chanjonathan">GitHub</a> |
+        <a href="https://www.linkedin.com/in/chan-jon/">LinkedIn</a>
 
-      <br>
+        <p>Hi!</p>
+        <p>I'm a Computer Science student at the University of British Columbia doing second degree program. I have a
+            background in Biochemistry. Cybersecurity is a area that particularly interests me and I hope learn more
+            about it. I'm currently exploring uses of Computer Science in Chemistry.</p>
+        <p>In my free time I'm into powerlifting and playing the guitar poorly.</p>
 
-      <button id="scriptButton" onclick="getScript()">Get Bee Movie Script</button>
-      <div id="scriptContainer"></div>
+        <br>
 
-      <br>
-      <h2>Projects</h3>
+        <button id="scriptButton" onclick="getScript()">Get Bee Movie Script</button>
+        <div id="scriptContainer"></div>
 
-        <h3>Conformer Counter</h3>
-        <center><img src="images/Conformer.png" alt="Equatorial and Axial Conformers." width="450"/></center>
+        <br>
+        <h2>Projects</h3>
 
-        <ul>
-            <li>A python script that determines whether a methylcyclohexane is axial or equatorial.</li>
-            <li>Will determine the ratio of conformers in the oddly specific scenario that you have thousands of methylcylcohexane molecules in a .gro file.</li>
-        </ul>
+            <h3>Conformer Counter</h3>
+            <center><img src="images/Conformer.png" alt="Equatorial and Axial Conformers." width="450" /></center>
 
-        <h3>Linear Progression Training Program</h3>
-        <center><img src="images/LPTP.png" alt="Program Menu" width="250" /></center>
-        <ul>
-            <li>Like 5x5 programs? Well don't let Mehdi know, because I've just stolen his training protocol.</li>
-            <li>Save and load your progress and generate new workout plans..</li>
-        </ul>
-        
-        <h3>Computational Chemistry Tools</h3>
-        <center><img src="images/Tools.PNG" alt="CLI Interface" width="400" /></center>
-        <ul>
-            <li>A set of python scripts that convert files so that the poor undergrad doesn't have to!</li>
-            <li>Can turn multiple files into jobs for a given job setting.</li>
-            <li>Will extract the data to .csv format for you.</li>
-            <li>Gives you useful error messages.</li>
-            <li>Frees you from relying on clunky Gaussian GUI.</li>
-        </ul>      
+            <ul>
+                <li>A python script that determines whether a methylcyclohexane is axial or equatorial.</li>
+                <li>Will determine the ratio of conformers in the oddly specific scenario that you have thousands of
+                    methylcylcohexane molecules in a .gro file.</li>
+            </ul>
 
-      <br>
-      <h2>Photo Gallery</h2>
-      <center><img src="images/IMG_6468.JPG" alt="Prince and Heather" width="400"/>
-      <p>These were my two bunnies Prince and Heather.</p></center>
+            <h3>Linear Progression Training Program</h3>
+            <center><img src="images/LPTP.png" alt="Program Menu" width="250" /></center>
+            <ul>
+                <li>Like 5x5 programs? Well don't let Mehdi know, because I've just stolen his training protocol.</li>
+                <li>Save and load your progress and generate new workout plans..</li>
+            </ul>
 
-      <br>
-     <h2>Blog</h2>
-     <p><a href="blog.html">View Blog</a></p>
-      
-     <br>
-     <h2>Client and Server Stuff</h2>
-      <form id="form" action="/form-handler" method="POST">
-        <p>Input some comma separated integers for me to sort:</p>
-        <textarea name="text-input">3, 2, 4, 1, 5</textarea>
-        <br/>
-        <input type="submit" />
-      </form>
-      <br>
+            <h3>Computational Chemistry Tools</h3>
+            <center><img src="images/Tools.PNG" alt="CLI Interface" width="400" /></center>
+            <ul>
+                <li>A set of python scripts that convert files so that the poor undergrad doesn't have to!</li>
+                <li>Can turn multiple files into jobs for a given job setting.</li>
+                <li>Will extract the data to .csv format for you.</li>
+                <li>Gives you useful error messages.</li>
+                <li>Frees you from relying on clunky Gaussian GUI.</li>
+            </ul>
 
-    <button id="responseButton" onclick="getResponse()">Get Response</button>
-      <div id="responseContainer"></div>
+            <br>
+            <h2>Photo Gallery</h2>
+            <center><img src="images/IMG_6468.JPG" alt="Prince and Heather" width="400" />
+                <p>These were my two bunnies Prince and Heather.</p>
+            </center>
 
-    <br><br><br><br>
+            <br>
+            <h2>Blog</h2>
+            <p><a href="blog.html">View Blog</a></p>
+
+            <br>
+            <h2>Client and Server Stuff</h2>
+
+            <iframe name="frame"></iframe>
+
+            <form id="textForm" action="/text-form-handler" method="POST" target="frame">
+                <p>Input some comma separated integers for me to sort:</p>
+                <textarea name="text-input">3, 2, 4, 1, 5</textarea>
+                <br>
+                <button id="textFormButton">submit</button>
+            </form>
+            <br>
+
+            <div id="responseContainer"></div>
+
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+                <p>Upload a .log file:</p>
+                <input type="file" name="image">
+            </form>
+
+            <br><br><br><br>
     </div>
-  </body>
+</body>
+
 </html>

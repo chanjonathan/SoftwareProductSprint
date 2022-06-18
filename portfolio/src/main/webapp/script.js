@@ -12,6 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+
+window.onload=function(){
+    handleSortForm();
+}
+
+
 async function getScript() {
     const file = await fetch("https://gist.githubusercontent.com/MattIPv4/045239bc27b16b2bcf7a3a9a4648c08a/raw/2411e31293a35f3e565f61e7490a806d4720ea7e/bee%2520movie%2520script");
     const text = await file.text();
@@ -36,8 +42,13 @@ async function clearScript() {
 async function getResponse() {
     const responseContainer = document.getElementById("responseContainer");
 
-    const fetchedJSON = await fetch("/form-handler");
-    const list = await fetchedJSON.json();
+    var fetchedJSON = await fetch("/text-form-handler");
+    var list = await fetchedJSON.json();
+
+    while (list.length == 0) {
+        fetchedJSON = await fetch("/text-form-handler");
+        list = await fetchedJSON.json();
+    }
 
     let string = "";
 
@@ -50,4 +61,16 @@ async function getResponse() {
     }
 
     responseContainer.innerText = string;
+}
+
+
+
+async function handleSortForm() {
+    var textForm = document.getElementById("textForm");
+    
+    document.getElementById("textFormButton").addEventListener("click", function () {
+        textForm.submit();
+
+        getResponse();
+    });
 }

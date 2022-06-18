@@ -12,27 +12,53 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 /**
- * Handles requests sent to the /hello URL. Try running a server and navigating
- * to /hello!
+ * Handles requests sent to the /text-form-handler URL. Takes given list and tries to sort and return it.
  */
-@WebServlet("/form-handler")
-public class FormServlet extends HttpServlet {
+
+
+@WebServlet("/text-form-handler")
+public class TextFormHandlerServlet extends HttpServlet {
 
     ArrayList<String> list;
+    boolean ready;
 
-    public FormServlet() {
+    public TextFormHandlerServlet() {
         list = new ArrayList<String>();
         list.add("No input has been recieved");
+
+        ready = false;
+    }
+
+    public void selectionSort(ArrayList<Integer> list) {
+        for (int i = 0; i < list.size(); i++) {
+            Integer smallest = i;
+    
+            for (int j = i + 1; j < list.size(); j++) {
+                if (list.get(j) < list.get(smallest)) {
+                    smallest = j;
+                }
+            }
+            
+            Integer temp = list.get(i);
+            list.set(i, list.get(smallest));
+            list.set(smallest, temp);
+        }
     }
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Gson gson = new Gson();
+        String string;
 
-        String string = gson.toJson(list);
-
+        if (ready) {
+            string = gson.toJson(list);
+        } else {
+            string = gson.toJson(new ArrayList<Integer>());
+        }
         response.setContentType("text/html;");
         response.getWriter().println(string);
+        
+        ready = false;
     }
 
     @Override
@@ -52,21 +78,15 @@ public class FormServlet extends HttpServlet {
                 intList.add(Integer.parseInt(string));
             }
         } catch (Exception exception) {
-            // response.setContentType("text/html;");
-            // response.getWriter().println("Invalid character in submission.");
-
             list = new ArrayList<String>();
             list.add("Invalid character in submission.");
-            
-            response.sendRedirect("https://jchan-sps-summer22.appspot.com#form");
 
+            response.sendRedirect("https://jchan-sps-summer22.appspot.com#form");
+            ready = true;
             return;
         }
 
-        Collections.sort(intList);
-
-        // response.setContentType("text/html;");
-        // response.getWriter().println(intList.toString());
+        selectionSort(intList);
 
         list = new ArrayList<String>();
         for (Integer number : intList) {
@@ -74,6 +94,7 @@ public class FormServlet extends HttpServlet {
         }
 
         response.sendRedirect("https://jchan-sps-summer22.appspot.com#form");
+        ready = true;
     }
 
     private String getParameter(HttpServletRequest request, String name, String defaultValue) {
