@@ -77,7 +77,7 @@ public class TextFormHandlerServlet extends HttpServlet {
             }
         } catch (Exception exception) {
             list = new ArrayList<String>();
-            list.add("Invalid character detected.");
+            list.add("Invalid input.");
 
             response.sendRedirect("https://jchan-sps-summer22.appspot.com#form");
             ready = true;

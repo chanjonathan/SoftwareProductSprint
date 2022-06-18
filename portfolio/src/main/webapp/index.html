@@ -6,6 +6,7 @@
     <title>Jonathan Chan</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+    <link rel="icon" href="images/icon.png">
 </head>
 
 <body>
@@ -69,20 +70,42 @@
                 <p>Input some comma separated integers for the server to sort:</p>
                 <textarea name="text-input">3, 2, 4, 1, 5</textarea>
                 <br>
-                <button id="textFormButton">Submit</button>
+                <button id="textFormButton">Sort</button>
             </form>
-            <br>
-
             <div id="responseContainer"></div>
 
-            <form action="/upload" method="POST" enctype="multipart/form-data">
+            <br>
+
+            <form action="/image-upload" method="POST" enctype="multipart/form-data">
                 <p>Upload an image:</p>
                 <input type="file" name="image">
-                <br><br>
+                <br>
+                <p>Type some text:</p>
+                <textarea name="message"></textarea>
+                <br/>
                 <button>Upload</button>
               </form>
           
               <p><a href="/list-images">Click here to see all of the uploaded images!</a></p>
+
+              <br>
+
+              <form action="/file-upload" method="POST" enctype="multipart/form-data">
+                <p>Upload a .log file:</p>
+                <input type="file" name="file">
+                <br>
+                <p>File suffix:</p>
+                <input type="text" name="file-suffix"></textarea>
+                <br/>
+                <p>Job keywords:</p>
+                <textarea name="job-keywords"></textarea>
+                <br>
+                <p>Additional input:</p>
+                <textarea name="additional-input"></textarea>
+                <br/>
+                <button>Upload</button>
+              </form>
+              
 
             <br><br><br><br>
     </div>

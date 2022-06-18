@@ -14,6 +14,9 @@
 
 package com.google.sps.servlets;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 import com.google.cloud.storage.Blob;
 import com.google.cloud.storage.BlobId;
 import com.google.cloud.storage.BlobInfo;
@@ -43,31 +46,44 @@ public class FileFormHandlerServlet extends HttpServlet {
       throws ServletException, IOException {
 
     // Get the message entered by the user.
-    String message = request.getParameter("message");
+    String fileSuffix = request.getParameter("file-suffix");
+    String jobKeywords = request.getParameter("job-keywords");
+    String additionaInput = request.getParameter("additional-input");
+
 
     // Get the file chosen by the user.
-    Part filePart = request.getPart("image");
+    Part filePart = request.getPart("file");
     String fileName = filePart.getSubmittedFileName();
     InputStream fileInputStream = filePart.getInputStream();
 
     // Upload the file and get its URL
     String uploadedFileUrl = uploadToCloudStorage(fileName, fileInputStream);
 
+
+    // Run Python script
+    Runtime rt = Runtime.getRuntime();
+    Process pr = rt.exec("ls");
+
+    ProcessBuilder builder = new ProcessBuilder("pwd");
+    builder.redirectErrorStream(true);
+    Process process = builder.start();
+    InputStream is = process.getInputStream();
+    BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+    
     // Output some HTML that shows the data the user entered.
     // You could also store the uploadedFileUrl in Datastore instead.
     PrintWriter out = response.getWriter();
-    out.println("<p>Here's the image you uploaded:</p>");
-    out.println("<a href=\"" + uploadedFileUrl + "\">");
-    out.println("<img src=\"" + uploadedFileUrl + "\" />");
-    out.println("</a>");
-    out.println("<p>Here's the text you entered:</p>");
-    out.println(message);
+    
+    String line = null;
+    while ((line = reader.readLine()) != null) {
+       out.println(line);
+    }
   }
 
   /** Uploads a file to Cloud Storage and returns the uploaded file's URL. */
   private static String uploadToCloudStorage(String fileName, InputStream fileInputStream) {
-    String projectId = "jchan";
-    String bucketName = "jchan.appspot.com";
+    String projectId = "jchan-sps-summer22";
+    String bucketName = "jchan-sps-summer22.appspot.com";
     Storage storage =
         StorageOptions.newBuilder().setProjectId(projectId).build().getService();
     BlobId blobId = BlobId.of(bucketName, fileName);
