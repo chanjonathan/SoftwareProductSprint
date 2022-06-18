@@ -17,28 +17,6 @@ window.onload=function(){
     handleSortForm();
 }
 
-
-async function getScript() {
-    const file = await fetch("https://gist.githubusercontent.com/MattIPv4/045239bc27b16b2bcf7a3a9a4648c08a/raw/2411e31293a35f3e565f61e7490a806d4720ea7e/bee%2520movie%2520script");
-    const text = await file.text();
-
-    const scriptContainer = document.getElementById('scriptContainer');
-    scriptContainer.innerText = text;
-
-    const scriptButton = document.getElementById('scriptButton');
-    scriptButton.setAttribute("onClick", "clearScript()");
-    scriptButton.innerText = "Nevermind"
-}
-
-async function clearScript() {
-    const scriptContainer = document.getElementById('scriptContainer');
-    scriptContainer.innerText = "";
-
-    const scriptButton = document.getElementById('scriptButton');
-    scriptButton.setAttribute("onClick", "getScript()");
-    scriptButton.innerText = "Get Bee Movie Script"
-}
-
 async function getResponse() {
     const responseContainer = document.getElementById("responseContainer");
 
@@ -62,7 +40,6 @@ async function getResponse() {
 
     responseContainer.innerText = string;
 }
-
 
 
 async function handleSortForm() {
