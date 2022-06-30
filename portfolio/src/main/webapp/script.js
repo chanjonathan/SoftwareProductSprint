@@ -12,17 +12,42 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Adds a random greeting to the page.
- */
-function addRandomGreeting() {
-  const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+window.onload=function(){
+    handleSortForm();
+}
 
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+async function getResponse() {
+    const responseContainer = document.getElementById("responseContainer");
+
+    var fetchedJSON = await fetch("/text-form-handler");
+    var list = await fetchedJSON.json();
+
+    while (list.length == 0) {
+        fetchedJSON = await fetch("/text-form-handler");
+        list = await fetchedJSON.json();
+    }
+
+    let string = "";
+
+    for (i = 0; i < list.length; i++) {
+        if (string.length == 0) {
+            string = string.concat(list[i]);
+        } else {
+            string = string.concat(", ", list[i]);
+        }
+    }
+
+    responseContainer.innerText = string;
+}
+
+
+async function handleSortForm() {
+    var textForm = document.getElementById("textForm");
+    
+    document.getElementById("textFormButton").addEventListener("click", function () {
+        textForm.submit();
+
+        getResponse();
+    });
 }

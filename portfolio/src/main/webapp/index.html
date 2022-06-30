@@ -1,19 +1,114 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <title>Jonathan Chan</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
-  </head>
-  <body>
+    <link rel="icon" href="images/icon.png">
+</head>
+
+<body>
     <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click <a href="/hello">here</a> to see content created by server code.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+        <h1>Jonathan Chan</h1>
+        <a href="https://github.com/chanjonathan">GitHub</a> |
+        <a href="https://www.linkedin.com/in/chan-jon/">LinkedIn</a>
+
+        <p>Hi!</p>
+        <p>I'm a Computer Science student at the University of British Columbia doing second degree program. I have a
+            background in Biochemistry and I'm currently exploring the field of Cheminformatics. Cybersecurity is an area that particularly interests me and I hope learn more
+            about it.</p>
+        <p>In my free time I'm into powerlifting and playing the guitar poorly.</p>
+
+        <br>
+
+        <h2>Projects</h3>
+
+            <h3>Conformer Counter</h3>
+            <center><img src="images/Conformer.png" alt="Equatorial and Axial Conformers." width="450" /></center>
+
+            <ul>
+                <li>A python script that determines whether a methylcyclohexane is axial or equatorial.</li>
+                <li>Will determine the ratio of conformers in the oddly specific scenario that you have thousands of
+                    methylcylcohexane molecules in a .gro file.</li>
+            </ul>
+
+            <h3>Linear Progression Training Program</h3>
+            <center><img src="images/LPTP.png" alt="Program Menu" width="250" /></center>
+            <ul>
+                <li>Like 5x5 programs? Well don't let Mehdi know, because I've just stolen his training protocol.</li>
+                <li>Save and load your progress and generate new workout plans..</li>
+            </ul>
+
+            <h3>Computational Chemistry Tools</h3>
+            <center><img src="images/Tools.PNG" alt="CLI Interface" width="400" /></center>
+            <ul>
+                <li>A set of python scripts that convert files so that the poor undergrad doesn't have to!</li>
+                <li>Can turn multiple files into jobs for a given job setting.</li>
+                <li>Will extract the data to .csv format for you.</li>
+                <li>Gives you useful error messages.</li>
+                <li>Frees you from relying on clunky Gaussian GUI.</li>
+            </ul>
+
+            <br>
+            <h2>Photo Gallery</h2>
+            <p><a href="photo-gallery.html">View</a></p>
+
+
+
+            <br>
+            <h2>Blog</h2>
+            <p><a href="blog.html">View</a></p>
+
+            <br>
+            <h2>Client and Server Stuff</h2>
+
+            <iframe name="frame"></iframe>
+
+            <form id="textForm" action="/text-form-handler" method="POST" target="frame">
+                <p>Input some comma separated integers for the server to sort:</p>
+                <textarea name="text-input">3, 2, 4, 1, 5</textarea>
+                <br>
+                <button id="textFormButton">Sort</button>
+            </form>
+            <div id="responseContainer"></div>
+
+            <br>
+
+            <form action="/image-upload" method="POST" enctype="multipart/form-data">
+                <p>Upload an image:</p>
+                <input type="file" name="image">
+                <br>
+                <p>Type some text:</p>
+                <textarea name="message"></textarea>
+                <br/>
+                <button>Upload</button>
+              </form>
+          
+              <p><a href="/list-images">Click here to see all of the uploaded images!</a></p>
+
+              <br>
+
+              <form action="/file-upload" method="POST" enctype="multipart/form-data">
+                <p>Upload a .log file:</p>
+                <input type="file" name="file">
+                <br>
+                <p>File suffix:</p>
+                <input type="text" name="file-suffix"></textarea>
+                <br/>
+                <p>Job keywords:</p>
+                <textarea name="job-keywords"></textarea>
+                <br>
+                <p>Additional input:</p>
+                <textarea name="additional-input"></textarea>
+                <br/>
+                <button>Upload</button>
+              </form>
+              
+
+            <br><br><br><br>
     </div>
-  </body>
+</body>
+
 </html>
